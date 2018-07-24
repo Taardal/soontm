@@ -1,12 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
-import Enzyme from "enzyme";
+import ReactTestRenderer from "react-test-renderer";
 import App from "./App";
-import Gallery from "./Gallery";
+
+jest.mock("./Gallery");
 
 describe("App", () => {
   it("renders", () => {
-    const enzyme = Enzyme.shallow(<App />);
-    expect(enzyme.find(Gallery).length).toBe(1);
+    expect(ReactTestRenderer.create(<App />).toJSON()).toMatchSnapshot();
   });
 });

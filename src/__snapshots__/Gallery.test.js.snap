@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gallery renders expected number of items 1`] = `
+<FlatList
+  data={
+    Array [
+      Object {
+        "id": 0,
+        "value": "powderblue",
+      },
+      Object {
+        "id": 1,
+        "value": "skyblue",
+      },
+      Object {
+        "id": 2,
+        "value": "steelblue",
+      },
+      Object {
+        "id": 3,
+        "value": "powderblue",
+      },
+    ]
+  }
+  keyExtractor={[Function]}
+  numColumns={3}
+  renderItem={[Function]}
+/>
+`;

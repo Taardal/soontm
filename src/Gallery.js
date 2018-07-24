@@ -1,34 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, Dimensions, View, Text, FlatList } from "react-native";
+import { FlatList, Dimensions } from "react-native";
 import GalleryItem from "./GalleryItem";
 
 const numberOfColumns = 3;
-const size = Dimensions.get("window").width / numberOfColumns;
-const styles = StyleSheet.create({
-  itemContainer: {
-    width: size,
-    height: size
-  },
-  item: {
-    flex: 1,
-    margin: 3,
-    backgroundColor: "lightblue"
-  }
-});
+const itemSize = Dimensions.get("window").width / numberOfColumns;
 
 class Gallery extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    const { colors } = this.props;
     return (
       <FlatList
-        data={this.props.colors}
+        data={colors}
         renderItem={({ item }) => (
-          <GalleryItem color={item.value} width={size} height={size} />
-          
+          <GalleryItem color={item.value} width={itemSize} height={itemSize} />
         )}
         keyExtractor={item => item.id}
         numColumns={numberOfColumns}
