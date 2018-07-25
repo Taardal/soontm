@@ -4,10 +4,14 @@ exports[`GalleryItem renders 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "powderblue",
+      "backgroundColor": "skyblue",
       "height": 100,
       "width": 100,
     }
   }
-/>
+>
+  <Text>
+    some movie
+  </Text>
+</View>
 `;

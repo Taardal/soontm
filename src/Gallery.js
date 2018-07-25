@@ -8,12 +8,12 @@ const itemSize = Dimensions.get("window").width / numberOfColumns;
 
 class Gallery extends React.Component {
   render() {
-    const { colors } = this.props;
+    const { movies } = this.props;
     return (
       <FlatList
-        data={colors}
+        data={movies}
         renderItem={({ item }) => (
-          <GalleryItem color={item.value} width={itemSize} height={itemSize} />
+          <GalleryItem movie={item} width={itemSize} height={itemSize} />
         )}
         keyExtractor={item => item.id}
         numColumns={numberOfColumns}
@@ -23,7 +23,7 @@ class Gallery extends React.Component {
 }
 
 Gallery.propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.object).isRequired
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Gallery;

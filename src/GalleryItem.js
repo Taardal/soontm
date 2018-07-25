@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 class GalleryItem extends React.Component {
   constructor(props) {
@@ -8,17 +8,19 @@ class GalleryItem extends React.Component {
   }
 
   render() {
-    const { color, width, height } = this.props;
+    const { movie, width, height } = this.props;
     return (
       <View
-        style={{ width: width, height: height, backgroundColor: color }}
-      />
+        style={{ width: width, height: height, backgroundColor: "skyblue", margin: 1 }}
+      >
+        <Text>{movie.title}</Text>
+      </View>
     );
   }
 }
 
 GalleryItem.propTypes = {
-  color: PropTypes.string.isRequired,
+  movie: PropTypes.object.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired
 };

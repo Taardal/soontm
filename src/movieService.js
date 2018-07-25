@@ -1,0 +1,1 @@
+export const fetchUpcomingMovies = () => fetch("https://facebook.github.io/react-native/movies.json").then(response => response.json());

@@ -6,7 +6,7 @@ jest.mock("FlatList", () => "FlatList");
 
 describe("Gallery", () => {
   it("renders expected number of items", () => {
-    const colors = [
+    const movies = [
       { id: 0, value: "powderblue" },
       { id: 1, value: "skyblue" },
       { id: 2, value: "steelblue" },
@@ -14,10 +14,10 @@ describe("Gallery", () => {
     ];
 
     const viewTree = ReactTestRenderer.create(
-      <Gallery colors={colors} />
+      <Gallery movies={movies} />
     ).toJSON();
 
     expect(viewTree).toMatchSnapshot();
-    expect(viewTree.props.data.length).toBe(colors.length);
+    expect(viewTree.props.data.length).toBe(movies.length);
   });
 });
