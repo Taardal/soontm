@@ -1,20 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, View, Text } from "react-native";
+import { Image } from "react-native";
 
 class GalleryItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { movie, width, height } = this.props;
+    const { movie, posterBaseUrl, width, height } = this.props;
     return (
-      <View
-        style={{ width: width, height: height, backgroundColor: "skyblue", margin: 1 }}
-      >
-        <Text>{movie.title}</Text>
-      </View>
+      <Image
+        source={{ uri: posterBaseUrl + movie.poster_path }}
+        style={{
+          width: width,
+          height: height,
+          margin: 1,
+          resizeMode: "cover"
+        }}
+      />
     );
   }
 }
@@ -22,7 +22,8 @@ class GalleryItem extends React.Component {
 GalleryItem.propTypes = {
   movie: PropTypes.object.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
+  height: PropTypes.number.isRequired,
+  posterBaseUrl: PropTypes.string.isRequired,
 };
 
 export default GalleryItem;

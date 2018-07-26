@@ -9,10 +9,9 @@ const moviesReducer = (movies = [], action) => {
     case FETCH_MOVIES_REQUEST:
       return movies;
     case FETCH_MOVIES_SUCCESS:
-      const foo = [...movies, ...action.body.movies];
-      console.log(foo);
-      return foo;
+      return [...action.body.results];
     case FETCH_MOVIES_FAILURE:
+      console.error(FETCH_MOVIES_FAILURE + "[" + action.exception + "]");
       return movies;
     default:
       return movies;

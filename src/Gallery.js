@@ -1,19 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FlatList, Dimensions } from "react-native";
+import { FlatList } from "react-native";
 import GalleryItem from "./GalleryItem";
-
-const numberOfColumns = 3;
-const itemSize = Dimensions.get("window").width / numberOfColumns;
 
 class Gallery extends React.Component {
   render() {
-    const { movies } = this.props;
+    const { movies, posterBaseUrl, itemWidth, itemHeight, numberOfColumns } = this.props;
     return (
       <FlatList
         data={movies}
         renderItem={({ item }) => (
-          <GalleryItem movie={item} width={itemSize} height={itemSize} />
+          <GalleryItem movie={item} width={itemWidth} height={itemHeight} posterBaseUrl={posterBaseUrl} />
         )}
         keyExtractor={item => item.id}
         numColumns={numberOfColumns}
@@ -23,7 +20,11 @@ class Gallery extends React.Component {
 }
 
 Gallery.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  posterBaseUrl: PropTypes.string.isRequired,
+  itemWidth: PropTypes.number.isRequired,
+  itemHeight: PropTypes.number.isRequired,
+  numberOfColumns: PropTypes.number.isRequired,
 };
 
 export default Gallery;

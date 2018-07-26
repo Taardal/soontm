@@ -1,17 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GalleryItem renders 1`] = `
-<View
+<Image
+  source={
+    Object {
+      "uri": "https://image.tmdb.org/t/p/w342undefined",
+    }
+  }
   style={
     Object {
-      "backgroundColor": "skyblue",
       "height": 100,
+      "margin": 1,
+      "resizeMode": "cover",
       "width": 100,
     }
   }
->
-  <Text>
-    some movie
-  </Text>
-</View>
+/>
 `;

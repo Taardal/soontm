@@ -19,8 +19,15 @@ describe("movieActions", () => {
   it("fetches movies", () => {
     const initialState = {};
     const store = mockStore(initialState);
-    const movies = [{ id: "1", title: "Star Wars", releaseYear: "1977" }];
-
+    const movies = {
+      results: [
+        {
+          id: 353081,
+          title: "Mission: Impossible - Fallout"
+        }
+      ]
+    };
+    
     fetch = jest.fn(() =>
       Promise.resolve({
         json: () => ({ movies })

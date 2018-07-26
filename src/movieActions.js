@@ -1,4 +1,4 @@
-import { fetchUpcomingMovies } from "./movieService";
+import { fetchUpcomingMovies } from "./theMovieDbService";
 import {
   FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
@@ -25,23 +25,3 @@ export const fetchMovies = () => dispatch => {
     .then(body => dispatch(fetchMoviesSuccess(body)))
     .catch(e => dispatch(fetchMoviesFailure(e)));
 };
-
-/*
-export const fetchMovies = () => dispatch => {
-  dispatch(fetchMoviesRequest());
-  return fetch("https://facebook.github.io/react-native/movies.json")
-    .then(response => response.json())
-    .then(body => dispatch(fetchMoviesSuccess(body)))
-    .catch(e => dispatch(fetchMoviesFailure(e)));
-};
-
-export function fetchMovies() {
-  return dispatch => {
-    dispatch(fetchMoviesRequest());
-    return fetch("http://example.com/todos")
-      .then(response => response.json())
-      .then(body => dispatch(fetchMoviesSuccess(body)))
-      .catch(e => dispatch(fetchMoviesFailure(e)));
-  };
-}
-*/
