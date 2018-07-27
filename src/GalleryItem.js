@@ -12,7 +12,7 @@ class GalleryItem extends React.Component {
           width: width,
           height: height,
           margin: 1,
-          resizeMode: "cover"
+          resizeMode: "cover",
         }}
       />
     );

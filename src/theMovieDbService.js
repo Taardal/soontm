@@ -6,7 +6,7 @@ export const fetchUpcomingMovies = () =>
     response.json()
   );
 
-export const fetchTMDbConfiguration = () =>
+export const fetchConfig = () =>
   fetch(BASE_URL + "/configuration?api_key=" + API_KEY).then(response =>
     response.json()
   );

@@ -10,10 +10,15 @@ class Gallery extends React.Component {
       <FlatList
         data={movies}
         renderItem={({ item }) => (
-          <GalleryItem movie={item} width={itemWidth} height={itemHeight} posterBaseUrl={posterBaseUrl} />
+          <GalleryItem
+            movie={item}
+            width={itemWidth}
+            height={itemHeight}
+            posterBaseUrl={posterBaseUrl}
+          />
         )}
         keyExtractor={item => item.id}
-        numColumns={numberOfColumns}
+        numColumns={3}
       />
     );
   }
@@ -24,7 +29,7 @@ Gallery.propTypes = {
   posterBaseUrl: PropTypes.string.isRequired,
   itemWidth: PropTypes.number.isRequired,
   itemHeight: PropTypes.number.isRequired,
-  numberOfColumns: PropTypes.number.isRequired,
+  numberOfColumns: PropTypes.number.isRequired
 };
 
 export default Gallery;

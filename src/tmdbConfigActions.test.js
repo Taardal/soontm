@@ -1,25 +1,25 @@
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import {
-  FETCH_CONFIGURATION_REQUEST,
-  FETCH_CONFIGURATION_SUCCESS,
-  FETCH_CONFIGURATION_FAILURE
+  FETCH_TMDB_CONFIG_REQUEST,
+  FETCH_TMDB_CONFIG_SUCCESS,
+  FETCH_TMDB_CONFIG_FAILURE
 } from "./actionTypes";
 import {
-  fetchConfiguration,
-  fetchConfigurationRequest,
-  fetchConfigurationSuccess,
-  fetchConfigurationFailure
-} from "./configurationActions";
+  fetchTmdbConfig,
+  fetchTmdbConfigRequest,
+  fetchTmdbConfigSuccess,
+  fetchTmdbConfigFailure
+} from "./TmdbConfigActions";
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-describe("configurationActions", () => {
-  it("fetches Configuration", () => {
+describe("tmdbConfigActions", () => {
+  it("fetches TMDb configuration", () => {
     const initialState = {};
     const store = mockStore(initialState);
-    const configuration = {
+    const tmdbConfig = {
       images: {
         poster_sizes: [
           "w92",
@@ -30,16 +30,16 @@ describe("configurationActions", () => {
     
     fetch = jest.fn(() =>
       Promise.resolve({
-        json: () => ({ configuration })
+        json: () => ({ tmdbConfig })
       })
     );
 
     const expectedActions = [
-      { type: FETCH_CONFIGURATION_REQUEST },
-      { type: FETCH_CONFIGURATION_SUCCESS, body: { configuration } }
+      { type: FETCH_TMDB_CONFIG_REQUEST },
+      { type: FETCH_TMDB_CONFIG_SUCCESS, body: { tmdbConfig } }
     ];
 
-    return store.dispatch(fetchConfiguration()).then(() => {
+    return store.dispatch(fetchTmdbConfig()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

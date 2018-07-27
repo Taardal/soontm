@@ -4,7 +4,7 @@ exports[`GalleryItem renders 1`] = `
 <Image
   source={
     Object {
-      "uri": "https://image.tmdb.org/t/p/w342undefined",
+      "uri": NaN,
     }
   }
   style={

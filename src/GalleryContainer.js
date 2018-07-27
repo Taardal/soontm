@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Dimensions } from "react-native";
 import Gallery from "./Gallery";
 import { fetchMovies } from "./movieActions";
-import { fetchConfiguration } from "./configurationActions";
-import { getPosterBaseUrl } from "./configurationReducer";
+import { fetchTmdbConfig } from "./tmdbConfigActions";
+import { getPosterBaseUrl } from "./tmdbConfigReducer";
 
 const numberOfColumns = 3;
 const itemWidth = Dimensions.get("window").width / numberOfColumns;
@@ -27,7 +27,7 @@ class GalleryContainer extends React.Component {
 
   componentDidMount() {
     this.props.onFetchMovies();
-    this.props.onFetchConfiguration();
+    this.props.onFetchTmdbConfig();
   }
 }
 
@@ -35,7 +35,7 @@ GalleryContainer.propTypes = {
   posterBaseUrl: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   onFetchMovies: PropTypes.func.isRequired,
-  onFetchConfiguration: PropTypes.func.isRequired,
+  onFetchTmdbConfig: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onFetchMovies: () => dispatch(fetchMovies()),
-  onFetchConfiguration: () => dispatch(fetchConfiguration())
+  onFetchTmdbConfig: () => dispatch(fetchTmdbConfig())
 });
 
 export default connect(

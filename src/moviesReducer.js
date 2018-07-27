@@ -1,21 +1,33 @@
-import {
-  FETCH_MOVIES_REQUEST,
-  FETCH_MOVIES_SUCCESS,
-  FETCH_MOVIES_FAILURE
-} from "./actionTypes";
+import { FETCH_MOVIES_REQUEST, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_FAILURE } from "./actionTypes";
 
-const moviesReducer = (movies = [], action) => {
+export const movies = (state = [], action) => {
   switch (action.type) {
-    case FETCH_MOVIES_REQUEST:
-      return movies;
     case FETCH_MOVIES_SUCCESS:
       return [...action.body.results];
-    case FETCH_MOVIES_FAILURE:
-      console.error(FETCH_MOVIES_FAILURE + "[" + action.exception + "]");
-      return movies;
     default:
-      return movies;
+      return state;
   }
 };
 
-export default moviesReducer;
+export const isMoviesLoading = (state = false, action) => {
+  switch (action.type) {
+    case FETCH_MOVIES_REQUEST:
+      return true;
+    case FETCH_MOVIES_SUCCESS || FETCH_MOVIES_FAILURE:
+      return false;
+    default:
+      return state;
+  }
+};
+
+export const isMoviesError = (state = false, action) => {
+  switch (action.type) {
+    case FETCH_MOVIES_FAILURE:
+      console.error(action.exception);
+      return true;
+    case FETCH_MOVIES_REQUEST || FETCH_MOVIES_SUCCESS:
+      return false;
+    default:
+      return state;
+  }
+};

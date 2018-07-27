@@ -1,13 +1,13 @@
-import moviesReducer from "./moviesReducer";
+import { movies, isMoviesLoading, isMoviesError } from "./moviesReducer";
 
-describe("moviesReducer", () => {
+describe("movies", () => {
   it("returns unmodified state by default", () => {
-    const movies = [
+    const state = [
       {
         id: 1,
         value: "Foo"
       }
     ];
-    expect(moviesReducer(movies, {})).toBe(movies);
+    expect(movies(state, {})).toBe(state);
   });
 });
