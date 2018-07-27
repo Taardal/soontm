@@ -14,7 +14,7 @@ describe("Gallery", () => {
     ];
 
     const viewTree = ReactTestRenderer.create(
-      <Gallery movies={movies} posterBaseUrl={"posterBaseUrl"} itemWidth={100} itemHeight={100} numberOfColumns={3} />
+      <Gallery movies={movies} imageBaseUrl={"imageBaseUrl"} imageWidth={100} imageHeight={100} numberOfColumns={3} />
     ).toJSON();
 
     expect(viewTree).toMatchSnapshot();

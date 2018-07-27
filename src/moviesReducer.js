@@ -29,7 +29,7 @@ export const isMoviesError = (state = false, action) => {
     case FETCH_MOVIES_SUCCESS:
       return false;
     case FETCH_MOVIES_FAILURE:
-      console.error(action.exception);
+      console.error(FETCH_MOVIES_FAILURE + " [" + action.error + "]");
       return true;
     default:
       return state;

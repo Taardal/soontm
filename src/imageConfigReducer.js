@@ -33,7 +33,7 @@ export const isImageConfigError = (state = false, action) => {
     case FETCH_IMAGE_CONFIG_SUCCESS:
       return false;
     case FETCH_IMAGE_CONFIG_FAILURE:
-      console.error(FETCH_IMAGE_CONFIG_FAILURE + " [" + action.exception + "]");
+      console.error(FETCH_IMAGE_CONFIG_FAILURE + " [" + action.error + "]");
       return true;
     default:
       return state;

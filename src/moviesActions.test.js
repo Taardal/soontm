@@ -10,7 +10,7 @@ import {
   fetchMoviesRequest,
   fetchMoviesSuccess,
   fetchMoviesFailure
-} from "./movieActions";
+} from "./moviesActions";
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Dimensions } from "react-native";
 import Gallery from "./Gallery";
-import { fetchMovies } from "./movieActions";
+import { fetchMovies } from "./moviesActions";
 import { fetchImageConfig } from "./imageConfigActions";
 
 const NUMBER_OF_COLUMNS = 3;

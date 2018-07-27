@@ -4,7 +4,7 @@ exports[`GalleryItem renders 1`] = `
 <Image
   source={
     Object {
-      "uri": NaN,
+      "uri": "imageBaseUrl/poster/path",
     }
   }
   style={
