@@ -4,48 +4,47 @@ import { connect } from "react-redux";
 import { Dimensions } from "react-native";
 import Gallery from "./Gallery";
 import { fetchMovies } from "./movieActions";
-import { fetchTmdbConfig } from "./tmdbConfigActions";
-import { getPosterBaseUrl } from "./tmdbConfigReducer";
+import { fetchImageConfig } from "./imageConfigActions";
 
-const numberOfColumns = 3;
-const itemWidth = Dimensions.get("window").width / numberOfColumns;
-const itemHeight = (itemWidth * 5) / 3;
+const NUMBER_OF_COLUMNS = 3;
+const IMAGE_WIDTH = Dimensions.get("window").width / NUMBER_OF_COLUMNS;
+const IMAGE_HEIGHT = (IMAGE_WIDTH * 5) / 3;
 
 class GalleryContainer extends React.Component {
   render() {
-    const { movies, posterBaseUrl } = this.props;
+    const { movies, imageBaseUrl } = this.props;
     return (
       <Gallery
         movies={movies}
-        posterBaseUrl={posterBaseUrl}
-        itemWidth={itemWidth}
-        itemHeight={itemHeight}
-        numberOfColumns={numberOfColumns}
+        imageBaseUrl={imageBaseUrl}
+        imageWidth={IMAGE_WIDTH}
+        imageHeight={IMAGE_HEIGHT}
+        numberOfColumns={NUMBER_OF_COLUMNS}
       />
     );
   }
 
   componentDidMount() {
     this.props.onFetchMovies();
-    this.props.onFetchTmdbConfig();
+    this.props.onFetchImageConfig();
   }
 }
 
 GalleryContainer.propTypes = {
-  posterBaseUrl: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  imageBaseUrl: PropTypes.string.isRequired,
   onFetchMovies: PropTypes.func.isRequired,
-  onFetchTmdbConfig: PropTypes.func.isRequired,
+  onFetchImageConfig: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   movies: state.movies,
-  posterBaseUrl: getPosterBaseUrl(itemWidth, state),
+  imageBaseUrl: state.imageBaseUrl,
 });
 
 const mapDispatchToProps = dispatch => ({
   onFetchMovies: () => dispatch(fetchMovies()),
-  onFetchTmdbConfig: () => dispatch(fetchTmdbConfig())
+  onFetchImageConfig: () => dispatch(fetchImageConfig(IMAGE_WIDTH))
 });
 
 export default connect(

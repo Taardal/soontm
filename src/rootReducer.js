@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { movies, isMoviesLoading, isMoviesError } from "./moviesReducer";
-import { tmdbConfig, isTmdbConfigLoading, isTmdbConfigError } from "./tmdbConfigReducer";
+import { imageBaseUrl, isImageConfigLoading, isImageConfigError } from "./imageConfigReducer";
 
 export default combineReducers({
   movies,
   isMoviesLoading,
   isMoviesError,
-  tmdbConfig,
-  isTmdbConfigLoading,
-  isTmdbConfigError,
+  imageBaseUrl,
+  isImageConfigLoading,
+  isImageConfigError,
 });
