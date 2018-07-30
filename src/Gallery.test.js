@@ -2,15 +2,16 @@ import React from "react";
 import ReactTestRenderer from "react-test-renderer";
 import Gallery from "./Gallery";
 
+jest.mock("StatusBar", () => "StatusBar");
 jest.mock("FlatList", () => "FlatList");
 
 describe("Gallery", () => {
   it("renders expected number of items", () => {
     const movies = [
-      { id: 0, value: "powderblue" },
-      { id: 1, value: "skyblue" },
-      { id: 2, value: "steelblue" },
-      { id: 3, value: "powderblue" }
+      { id: 0, value: "movie1" },
+      { id: 1, value: "movie2" },
+      { id: 2, value: "movie3" },
+      { id: 3, value: "movie4" }
     ];
 
     const viewTree = ReactTestRenderer.create(
@@ -18,6 +19,9 @@ describe("Gallery", () => {
     ).toJSON();
 
     expect(viewTree).toMatchSnapshot();
-    expect(viewTree.props.data.length).toBe(movies.length);
+    expect(viewTree.type).toBe("View");
+    expect(viewTree.children[0].type).toBe("StatusBar");
+    expect(viewTree.children[1].type).toBe("FlatList");
+    expect(viewTree.children[1].props.data.length).toBe(movies.length);
   });
 });

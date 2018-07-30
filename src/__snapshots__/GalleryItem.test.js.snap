@@ -1,19 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GalleryItem renders 1`] = `
-<Image
-  source={
-    Object {
-      "uri": "imageBaseUrl/poster/path",
+<TouchableHighlight>
+  <Image
+    source={
+      Object {
+        "uri": "image/api/url",
+      }
     }
-  }
-  style={
-    Object {
-      "height": 100,
-      "margin": 1,
-      "resizeMode": "cover",
-      "width": 100,
+    style={
+      Object {
+        "height": 100,
+        "margin": 1,
+        "resizeMode": "cover",
+        "width": 100,
+      }
     }
-  }
-/>
+  />
+</TouchableHighlight>
 `;

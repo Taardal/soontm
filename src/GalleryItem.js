@@ -1,24 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Image } from "react-native";
+import { TouchableHighlight, Image } from "react-native";
 
-const GalleryItem = ({ movie, imageBaseUrl, width, height }) => (
-  <Image
-    source={{ uri: imageBaseUrl + movie.poster_path }}
-    style={{
-      width: width,
-      height: height,
-      margin: 1,
-      resizeMode: "cover"
-    }}
-  />
+const GalleryItem = ({ imageUrl, width, height, onClick }) => (
+  <TouchableHighlight onPress={onClick}>
+    <Image
+      source={{ uri: imageUrl }}
+      style={{
+        width: width,
+        height: height,
+        margin: 1,
+        resizeMode: "cover"
+      }}
+    />
+  </TouchableHighlight>
 );
 
 GalleryItem.propTypes = {
-  movie: PropTypes.object.isRequired,
+  imageUrl: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  imageBaseUrl: PropTypes.string.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default GalleryItem;

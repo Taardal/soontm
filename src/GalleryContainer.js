@@ -11,12 +11,14 @@ const IMAGE_WIDTH = Dimensions.get("window").width / NUMBER_OF_COLUMNS;
 const IMAGE_HEIGHT = (IMAGE_WIDTH * 5) / 3;
 
 class GalleryContainer extends React.Component {
+  static navigationOptions = Gallery.navigationOptions;
+
   render() {
-    const { movies, imageBaseUrl } = this.props;
+    const { navigation, movies } = this.props;
     return (
       <Gallery
+        navigation={navigation}
         movies={movies}
-        imageBaseUrl={imageBaseUrl}
         imageWidth={IMAGE_WIDTH}
         imageHeight={IMAGE_HEIGHT}
         numberOfColumns={NUMBER_OF_COLUMNS}
@@ -32,14 +34,12 @@ class GalleryContainer extends React.Component {
 
 GalleryContainer.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
-  imageBaseUrl: PropTypes.string.isRequired,
   onFetchMovies: PropTypes.func.isRequired,
-  onFetchImageConfig: PropTypes.func.isRequired,
+  onFetchImageConfig: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  movies: state.movies,
-  imageBaseUrl: state.imageBaseUrl,
+  movies: state.movies
 });
 
 const mapDispatchToProps = dispatch => ({
