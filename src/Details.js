@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, Image } from "react-native";
+import { styles } from "./Details.styles";
 
-const width = 110;
-const height = (width * 5) / 3;
+const WIDTH = 110;
+const HEIGHT = (WIDTH * 5) / 3;
 
 class Details extends React.Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -19,55 +20,36 @@ class Details extends React.Component {
     const posterUrl = navigation.getParam("posterUrl");
     const backdropUrl = navigation.getParam("backdropUrl");
     return (
-      <View style={{ flex: 1 }}>
-        <Image
-          source={{ uri: backdropUrl }}
-          style={{
-            flex: 2
-          }}
-        />
-        <View style={{ flex: 1, backgroundColor: "#212121" }} />
-        <View style={{ flex: 3 }}>
-          <View style={{ marginTop: 35, marginLeft: 25, marginRight: 25, marginBottom: 35 }}>
-            <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Overview</Text>
-            <Text style={{}}>{movie.overview}</Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            height: height,
-            position: "absolute",
-            top: 100,
-            left: 25,
-            right: 25
-          }}
-        >
+      <View style={styles.container}>
+        <View style={{flex: 3}}>
+          <Image source={{ uri: backdropUrl }} style={styles.backdrop} />
+          <View style={styles.header} />
+          <View style={[styles.headerOverlay, { height: HEIGHT }]}>
           <Image
             source={{ uri: posterUrl }}
-            style={{
-              flex: 1,
-              width: width,
-              height: height,
-              resizeMode: "cover"
-            }}
+            style={[
+              styles.poster,
+              {
+                width: WIDTH,
+                height: HEIGHT,
+              }
+            ]}
           />
-          <View
-            style={{
-              flex: 2,
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "flex-end"
-            }}
-          >
-            <View style={{ marginLeft: 10 }}>
-              <Text style={{ color: "white", fontWeight: "bold" }}>{movie.title}</Text>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={{ color: "white" }}>{movie.release_date}</Text>
-                <Text style={{ color: "white", marginLeft: 10 }}>{movie.original_language}</Text>
+          <View style={styles.infoFrame}>
+            <View style={styles.infoText}>
+              <Text style={styles.title}>{movie.title}</Text>
+              <View style={styles.subtitleText}>
+                <Text style={styles.releaseDate}>{movie.release_date}</Text>
+                <Text style={styles.language}>{movie.original_language}</Text>
               </View>
             </View>
+          </View>
+        </View>
+        </View>
+        <View style={styles.overview}>
+          <View style={styles.overviewText}>
+            <Text style={styles.overviewTitleText}>Overview</Text>
+            <Text>{movie.overview}</Text>
           </View>
         </View>
       </View>

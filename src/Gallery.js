@@ -1,32 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import GalleryItemContainer from "./GalleryItemContainer";
 
 class Gallery extends React.Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
     return {
-      title: "Upcoming",
-    }
-  }
+      title: "Upcoming"
+    };
+  };
   render() {
     const { navigation, movies, imageWidth, imageHeight, numberOfColumns } = this.props;
     return (
-      <View>
-        <FlatList
-          data={movies}
-          renderItem={({ item }) => (
-            <GalleryItemContainer
-              navigation={navigation}
-              movie={item}
-              width={imageWidth}
-              height={imageHeight}
-            />
-          )}
-          keyExtractor={item => item.id}
-          numColumns={numberOfColumns}
-        />
-      </View>
+      <FlatList
+        data={movies}
+        renderItem={({ item }) => (
+          <GalleryItemContainer
+            navigation={navigation}
+            movie={item}
+            width={imageWidth}
+            height={imageHeight}
+          />
+        )}
+        keyExtractor={item => item.id}
+        numColumns={numberOfColumns}
+      />
     );
   }
 }
