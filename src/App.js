@@ -1,11 +1,13 @@
 import React from "react";
-import { StatusBar, View } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import { createStackNavigator } from "react-navigation";
 import store from "./reduxStore";
 import GalleryContainer from "./GalleryContainer";
 import Details from "./Details";
 import { styles } from "./App.styles";
+
+const actionBarStyles = StyleSheet.flatten(styles.actionBar);
 
 const Navigator = createStackNavigator(
   {
@@ -20,11 +22,11 @@ const Navigator = createStackNavigator(
     initialRouteName: "Gallery",
     navigationOptions: {
       headerStyle: {
-        backgroundColor: styles.actionBar.backgroundColor
+        backgroundColor: actionBarStyles.backgroundColor
       },
-      headerTintColor: styles.actionBar.tintColor,
+      headerTintColor: actionBarStyles.tintColor,
       headerTitleStyle: {
-        fontWeight: styles.actionBar.fontWeight
+        fontWeight: actionBarStyles.fontWeight
       }
     }
   }

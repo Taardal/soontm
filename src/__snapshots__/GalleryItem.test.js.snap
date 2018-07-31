@@ -1,18 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GalleryItem renders 1`] = `
+exports[`GalleryItem matches snapshot 1`] = `
 <TouchableHighlight
+  activeOpacity={0.85}
+  delayPressOut={100}
   onPress={[MockFunction]}
+  underlayColor="black"
 >
   <Image
     source={
       Object {
-        "uri": "image/api/url",
+        "uri": "imageUrl",
       }
     }
     style={
       Array [
-        undefined,
+        Object {
+          "margin": 0.5,
+        },
         Object {
           "height": 100,
           "width": 100,

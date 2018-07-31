@@ -1,17 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders 1`] = `
-<View
-  style={
+exports[`App matches snapshot 1`] = `
+<Provider
+  store={
     Object {
-      "flex": 1,
+      "dispatch": [MockFunction],
+      "getState": [MockFunction],
+      "replaceReducer": [MockFunction],
+      "subscribe": [MockFunction],
     }
   }
 >
-  <StatusBar
-    backgroundColor="black"
-    barStyle="light-content"
-  />
-  <Navigator />
-</View>
+  <Component
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <StatusBar
+      animated={false}
+      backgroundColor="black"
+      barStyle="light-content"
+      showHideTransition="fade"
+    />
+    <Navigator />
+  </Component>
+</Provider>
 `;

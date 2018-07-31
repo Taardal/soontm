@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gallery renders expected number of items 1`] = `
+exports[`Gallery matches snapshot 1`] = `
 <FlatList
   data={
     Array [
@@ -22,8 +22,16 @@ exports[`Gallery renders expected number of items 1`] = `
       },
     ]
   }
+  disableVirtualization={false}
+  horizontal={false}
+  initialNumToRender={10}
   keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
   numColumns={3}
+  onEndReachedThreshold={2}
   renderItem={[Function]}
+  scrollEventThrottle={50}
+  updateCellsBatchingPeriod={50}
+  windowSize={21}
 />
 `;
