@@ -1,35 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Gallery renders expected number of items 1`] = `
-<View>
-  <StatusBar
-    backgroundColor="#f4511e"
-    barStyle="light-content"
-  />
-  <FlatList
-    data={
-      Array [
-        Object {
-          "id": 0,
-          "value": "movie1",
-        },
-        Object {
-          "id": 1,
-          "value": "movie2",
-        },
-        Object {
-          "id": 2,
-          "value": "movie3",
-        },
-        Object {
-          "id": 3,
-          "value": "movie4",
-        },
-      ]
-    }
-    keyExtractor={[Function]}
-    numColumns={3}
-    renderItem={[Function]}
-  />
-</View>
+<FlatList
+  data={
+    Array [
+      Object {
+        "id": 0,
+        "value": "movie1",
+      },
+      Object {
+        "id": 1,
+        "value": "movie2",
+      },
+      Object {
+        "id": 2,
+        "value": "movie3",
+      },
+      Object {
+        "id": 3,
+        "value": "movie4",
+      },
+    ]
+  }
+  keyExtractor={[Function]}
+  numColumns={3}
+  renderItem={[Function]}
+/>
 `;

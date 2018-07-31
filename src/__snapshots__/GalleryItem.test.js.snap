@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GalleryItem renders 1`] = `
-<TouchableHighlight>
+<TouchableHighlight
+  onPress={[MockFunction]}
+>
   <Image
     source={
       Object {
@@ -9,12 +11,13 @@ exports[`GalleryItem renders 1`] = `
       }
     }
     style={
-      Object {
-        "height": 100,
-        "margin": 1,
-        "resizeMode": "cover",
-        "width": 100,
-      }
+      Array [
+        undefined,
+        Object {
+          "height": 100,
+          "width": 100,
+        },
+      ]
     }
   />
 </TouchableHighlight>
