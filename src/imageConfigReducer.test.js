@@ -1,4 +1,4 @@
-import { imageBaseUrl, isImageConfigLoading, isImageConfigError } from "./imageConfigReducer";
+import { imageConfig, isImageConfigLoading, isImageConfigError, getPosterUrl, getBackdropUrl } from "./imageConfigReducer";
 import {
   FETCH_IMAGE_CONFIG_REQUEST,
   FETCH_IMAGE_CONFIG_SUCCESS,
@@ -6,23 +6,20 @@ import {
 } from "./actionTypes";
 
 describe("imageConfigReducer", () => {
-  it("updates image base url on success action", () => {
-    const galleryItemWidth = 100;
-    const baseUrl = "base/url/to/image/api";
-    const posterSizes = ["w96", "w" + (galleryItemWidth + 1)];
+  it("updates state on success action", () => {
+    const imageConfiguration = {
+      imageConfig: {
+        secure_base_url: "image/api/base/url",
+        poster_sizes: ["w96", "w154"]
+      }
+    };
     const initialState = {};
     const action = {
       type: FETCH_IMAGE_CONFIG_SUCCESS,
-      galleryItemWidth: galleryItemWidth,
-      body: {
-        images: {
-          secure_base_url: baseUrl,
-          poster_sizes: posterSizes
-        }
-      }
+      body: imageConfiguration
     };
 
-    expect(imageBaseUrl(initialState, action)).toEqual(baseUrl + "/" + posterSizes[1]);
+    expect(imageConfig(initialState, action)).toEqual(imageConfiguration.images);
   });
 
   it("toggles loading state on actions", () => {
@@ -50,11 +47,49 @@ describe("imageConfigReducer", () => {
     };
     const failureAction = {
       type: FETCH_IMAGE_CONFIG_FAILURE,
-      error: "error" 
+      error: "error"
     };
 
     expect(isImageConfigError(false, requestAction)).toBe(false);
     expect(isImageConfigError(false, successAction)).toBe(false);
     expect(isImageConfigError(false, failureAction)).toBe(true);
   });
+
+  it("selects poster url with width equal-to-or-larger-than gallery item width", () => {
+    const targetWidth = 154;
+    const galleryItemWidth = targetWidth - 1;
+    const state = {
+      imageConfig: {
+        secure_base_url: "image/api/base/url/",
+        poster_sizes: ["w96", "w" + targetWidth, "w320"]
+      }
+    };
+    const movie = {
+      id: 1,
+      poster_path: "/poster.path"
+    };
+
+    expect(getPosterUrl(state, movie.poster_path, galleryItemWidth)).toEqual(
+      "image/api/base/url/w" + targetWidth + movie.poster_path
+    );
+  });
+
+  it("selects backdrop url with width equal-to-or-larger-than screen width", () => {
+    const targetWidth = 720;
+    const screenWidth = targetWidth - 1;
+    const state = {
+      imageConfig: {
+        secure_base_url: "image/api/base/url/",
+        backdrop_sizes: ["w320", "w" + targetWidth, "w1080"]
+      }
+    };
+    const movie = {
+      id: 1,
+      backdrop_path: "/backdrop.path"
+    };
+
+    expect(getBackdropUrl(state, movie.backdrop_path, screenWidth)).toEqual(
+      "image/api/base/url/w" + targetWidth + movie.backdrop_path
+    );
+  })
 });

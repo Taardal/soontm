@@ -9,10 +9,9 @@ export const fetchImageConfigRequest = () => ({
   type: FETCH_IMAGE_CONFIG_REQUEST
 });
 
-export const fetchImageConfigSuccess = (body, galleryItemWidth) => ({
+export const fetchImageConfigSuccess = (body) => ({
   type: FETCH_IMAGE_CONFIG_SUCCESS,
-  body,
-  galleryItemWidth
+  body
 });
 
 export const fetchImageConfigFailure = error => ({
@@ -20,9 +19,9 @@ export const fetchImageConfigFailure = error => ({
   error
 });
 
-export const fetchImageConfig = galleryItemWidth => dispatch => {
+export const fetchImageConfig = () => dispatch => {
   dispatch(fetchImageConfigRequest());
   return fetchConfig()
-    .then(body => dispatch(fetchImageConfigSuccess(body, galleryItemWidth)))
+    .then(body => dispatch(fetchImageConfigSuccess(body)))
     .catch(e => dispatch(fetchImageConfigFailure(e)));
 };

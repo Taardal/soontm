@@ -4,10 +4,10 @@ import {
   FETCH_IMAGE_CONFIG_FAILURE
 } from "./actionTypes";
 
-export const imageBaseUrl = (state = "", action) => {
+export const imageConfig = (state = {}, action) => {
   switch (action.type) {
     case FETCH_IMAGE_CONFIG_SUCCESS:
-      return getBaseUrl(action.body.images, action.galleryItemWidth);
+      return action.body.images;
     default:
       return state;
   }
@@ -40,10 +40,30 @@ export const isImageConfigError = (state = false, action) => {
   }
 };
 
-const getBaseUrl = (imageConfig, smallestWidthAllowed) => {
-  const secureBaseUrl = imageConfig.secure_base_url + (!imageConfig.secure_base_url.endsWith("/") ? "/" : "");
-  const posterSize = imageConfig.poster_sizes
-    .filter(posterSize => posterSize.startsWith("w"))
-    .find(posterSize => parseInt(posterSize.substring(1, posterSize.length)) > smallestWidthAllowed);
-  return secureBaseUrl + posterSize;
+export const getPosterUrl = (state, posterPath, smallestWidthAllowed) => {
+  if (state.imageConfig) {
+    const secureBaseUrl = state.imageConfig.secure_base_url;
+    const posterSizes = state.imageConfig.poster_sizes;
+    if (secureBaseUrl && posterSizes) {
+      const widthClass = getImageWidthClass(posterSizes, smallestWidthAllowed);
+      return secureBaseUrl + widthClass + posterPath;
+    }
+  }
+};
+
+export const getBackdropUrl = (state, backdropPath, smallestWidthAllowed) => {
+    if (state.imageConfig) {
+    const secureBaseUrl = state.imageConfig.secure_base_url;
+    const backdropSizes = state.imageConfig.backdrop_sizes;
+    if (secureBaseUrl && backdropSizes) {
+      const widthClass = getImageWidthClass(backdropSizes, smallestWidthAllowed);
+      return secureBaseUrl + widthClass + backdropPath;
+    }
+  }
+};
+
+const getImageWidthClass = (sizes, smallestWidthAllowed) => {
+  return sizes
+    .filter(size => size.startsWith("w"))
+    .find(size => parseInt(size.substring(1, size.length)) > smallestWidthAllowed);
 };

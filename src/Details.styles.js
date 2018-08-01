@@ -4,6 +4,9 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  topHalfContainer: {
+    flex: 3
+  },
   backdrop: {
     flex: 2
   },

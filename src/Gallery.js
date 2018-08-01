@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FlatList } from "react-native";
+import { FlatList, View, ActivityIndicator, StyleSheet, RefreshControl } from "react-native";
 import GalleryItemContainer from "./GalleryItemContainer";
 
 class Gallery extends React.Component {
@@ -9,8 +9,9 @@ class Gallery extends React.Component {
       title: "Upcoming"
     };
   };
+
   render() {
-    const { navigation, movies, imageWidth, imageHeight, numberOfColumns } = this.props;
+    const { navigation, movies, imageWidth, imageHeight, numberOfColumns, isLoading, onRefresh } = this.props;
     return (
       <FlatList
         data={movies}
@@ -24,17 +25,27 @@ class Gallery extends React.Component {
         )}
         keyExtractor={item => item.id}
         numColumns={numberOfColumns}
+        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
       />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  }
+});
 
 Gallery.propTypes = {
   navigation: PropTypes.object.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   imageWidth: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
-  numberOfColumns: PropTypes.number.isRequired
+  numberOfColumns: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onRefresh: PropTypes.func.isRequired
 };
 
 export default Gallery;
