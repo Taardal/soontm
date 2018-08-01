@@ -7,18 +7,8 @@ const WIDTH = 110;
 const HEIGHT = (WIDTH * 5) / 3;
 
 class Details extends React.Component {
-  static navigationOptions = ({ navigation, navigationOptions }) => {
-    const movie = navigation.getParam("movie");
-    return {
-      title: movie.title
-    };
-  };
-
   render() {
-    const { navigation } = this.props;
-    const movie = navigation.getParam("movie");
-    const posterUrl = navigation.getParam("posterUrl");
-    const backdropUrl = navigation.getParam("backdropUrl");
+    const { movie, posterUrl, backdropUrl, language } = this.props;
     return (
       <View style={styles.container}>
         <View style={{flex: 3}}>
@@ -40,7 +30,7 @@ class Details extends React.Component {
               <Text style={styles.title}>{movie.title}</Text>
               <View style={styles.subtitleText}>
                 <Text style={styles.releaseDate}>{movie.release_date}</Text>
-                <Text style={styles.language}>{movie.original_language}</Text>
+                <Text style={styles.language}>{language}</Text>
               </View>
             </View>
           </View>
@@ -55,6 +45,13 @@ class Details extends React.Component {
       </View>
     );
   }
+}
+
+Details.propTypes = {
+  movie: PropTypes.object.isRequired,
+  posterUrl: PropTypes.string.isRequired,
+  backdropUrl: PropTypes.string.isRequired,
+  language: PropTypes.string.isRequired
 }
 
 export default Details;

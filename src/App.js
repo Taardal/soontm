@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStackNavigator } from "react-navigation";
 import store from "./reduxStore";
 import GalleryContainer from "./GalleryContainer";
-import Details from "./Details";
+import DetailsContainer from "./DetailsContainer";
 import { styles } from "./App.styles";
 
 const actionBarStyles = StyleSheet.flatten(styles.actionBar);
@@ -15,7 +15,7 @@ const Navigator = createStackNavigator(
       screen: GalleryContainer
     },
     Details: {
-      screen: Details
+      screen: DetailsContainer
     }
   },
   {

@@ -11,23 +11,12 @@ describe("Details", () => {
       id: 1,
       title: "movie",
       release_date: "release_date",
-      original_language: "original_language",
+      original_language: "en",
       overview: "overview"
-    };
-    const navigation = {
-      getParam: name => {
-        if (name === "movie") {
-          return movie;
-        } else if (name === "posterUrl") {
-          return "posterUrl";
-        } else if (name === "backdropUrl") {
-          return "backdropUrl";
-        }
-      }
     };
 
     const shallowRenderer = new ShallowRenderer();
-    shallowRenderer.render(<Details navigation={navigation} />);
+    shallowRenderer.render(<Details movie={movie} posterUrl={"posterUrl"} backdropUrl={"backdropUrl"} language={"English"} />);
     const renderOutput = shallowRenderer.getRenderOutput();
 
     expect(renderOutput).toMatchSnapshot();

@@ -5,6 +5,7 @@ import { Dimensions } from "react-native";
 import Gallery from "./Gallery";
 import { fetchMovies } from "./moviesActions";
 import { fetchImageConfig } from "./imageConfigActions";
+import { fetchLanguages } from "./languagesActions";
 
 const NUMBER_OF_COLUMNS = 3;
 const IMAGE_WIDTH = Dimensions.get("window").width / NUMBER_OF_COLUMNS;
@@ -40,6 +41,7 @@ class GalleryContainer extends React.Component {
   onRefresh() {
     this.props.onFetchMovies();
     this.props.onFetchImageConfig();
+    this.props.onFetchLanguages();
   }
 }
 
@@ -47,17 +49,19 @@ GalleryContainer.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoading: PropTypes.bool.isRequired,
   onFetchMovies: PropTypes.func.isRequired,
-  onFetchImageConfig: PropTypes.func.isRequired
+  onFetchImageConfig: PropTypes.func.isRequired,
+  onFetchLanguages: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   movies: state.movies,
-  isLoading: state.isMoviesLoading && state.isImageConfigLoading
+  isLoading: state.isMoviesLoading && state.isImageConfigLoading && state.isLanguagesLoading
 });
 
 const mapDispatchToProps = dispatch => ({
   onFetchMovies: () => dispatch(fetchMovies()),
-  onFetchImageConfig: () => dispatch(fetchImageConfig())
+  onFetchImageConfig: () => dispatch(fetchImageConfig()),
+  onFetchLanguages: () => dispatch(fetchLanguages())
 });
 
 export default connect(
