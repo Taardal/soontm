@@ -34,7 +34,7 @@ class DetailsContainer extends React.Component {
         backdropUrl={backdropUrl}
         language={language}
         onPlayTrailer={this.onPlayTrailer}
-        trailerUrl={""}
+        trailerUrl={trailerUrl}
       />
     );
   }

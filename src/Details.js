@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, Image, TouchableHighlight, Linking } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { styles } from "./Details.styles";
 
 class Details extends React.Component {
@@ -8,6 +9,7 @@ class Details extends React.Component {
     super(props);
     this.getBackdrop = this.getBackdrop.bind(this);
   }
+
   render() {
     const { movie, posterSize, posterUrl, backdropUrl, language, onPlayTrailer, trailerUrl } = this.props;
     const backdrop = this.getBackdrop();
@@ -54,7 +56,22 @@ class Details extends React.Component {
     if (trailerUrl.length > 0) {
       return (
         <TouchableHighlight style={{ flex: 2 }} onPress={onPlayTrailer}>
-          {backdropImage}
+          <View style={{ flex: 1 }}>
+            {backdropImage}
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0
+              }}
+            >
+              <Icon name="play-circle-outline" size={60} color="white" />
+            </View>
+          </View>
         </TouchableHighlight>
       );
     } else {
