@@ -1,5 +1,5 @@
 ## Soon TM
-Example app that displays upcoming movies from [The Movie Database](http://themoviedb.org/).
+Example app that displays upcoming movies from [The Movie Database](http://themoviedb.org/). Written in React Native.
 
 ### Things to note about dependencies
 This app runs React Native v0.56 which uses Babel 7. That requires [babel-preset-react-native](https://www.npmjs.com/package/babel-preset-react-native) version to be *fixed* at-or-above version `5.0.2`. 
