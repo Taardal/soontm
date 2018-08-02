@@ -4,6 +4,9 @@ const BASE_URL = "https://api.themoviedb.org/3";
 export const fetchUpcomingMovies = () =>
   fetch(BASE_URL + "/movie/upcoming?api_key=" + API_KEY).then(response => response.json());
 
+export const fetchMovieVideos = movieId =>
+  fetch(BASE_URL + "/movie/" + movieId + "/videos?api_key=" + API_KEY).then(response => response.json());
+
 export const fetchConfig = () =>
   fetch(BASE_URL + "/configuration?api_key=" + API_KEY).then(response => response.json());
 
