@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { View } from "react-native";
 import GalleryItem from "./GalleryItem";
-import { getPosterUrl, getBackdropUrl } from "./imageConfigReducer";
+import { getPosterUrl } from "./imageConfigReducer";
 
 class GalleryItemContainer extends React.Component {
   constructor(props) {
@@ -12,22 +12,19 @@ class GalleryItemContainer extends React.Component {
   }
 
   render() {
-    const { movie, width, height, posterUrl } = this.props;
+    const { size, posterUrl } = this.props;
     return (
       <View>
-        {posterUrl.length > 0 && (
-          <GalleryItem imageUrl={posterUrl} width={width} height={height} onClick={this.onClick} />
-        )}
+        {posterUrl.length > 0 && <GalleryItem imageUrl={posterUrl} size={size} onClick={this.onClick} />}
       </View>
     );
   }
 
   onClick() {
-    const { navigation, movie, posterUrl, backdropUrl } = this.props;
+    const { navigation, movie, posterUrl } = this.props;
     navigation.navigate("Details", {
       movie,
-      posterUrl,
-      backdropUrl
+      posterUrl
     });
   }
 }
@@ -35,20 +32,12 @@ class GalleryItemContainer extends React.Component {
 GalleryItemContainer.propTypes = {
   navigation: PropTypes.object.isRequired,
   movie: PropTypes.object.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  posterUrl: PropTypes.string,
-  backdropUrl: PropTypes.string
-};
-
-GalleryItemContainer.defaultProps = {
-  posterUrl: "",
-  backdropUrl: ""
+  size: PropTypes.object.isRequired,
+  posterUrl: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  posterUrl: getPosterUrl(state, ownProps.movie.poster_path, ownProps.width),
-  backdropUrl: getBackdropUrl(state, ownProps.movie.backdrop_path, 300)
+  posterUrl: getPosterUrl(state, ownProps.movie.poster_path, ownProps.size.width)
 });
 
 export default connect(mapStateToProps)(GalleryItemContainer);

@@ -11,17 +11,12 @@ class Gallery extends React.Component {
   };
 
   render() {
-    const { navigation, movies, imageWidth, imageHeight, numberOfColumns, isLoading, onRefresh } = this.props;
+    const { navigation, movies, isLoading, itemSize, onRefresh, numberOfColumns } = this.props;
     return (
       <FlatList
         data={movies}
         renderItem={({ item }) => (
-          <GalleryItemContainer
-            navigation={navigation}
-            movie={item}
-            width={imageWidth}
-            height={imageHeight}
-          />
+          <GalleryItemContainer navigation={navigation} movie={item} size={itemSize} />
         )}
         keyExtractor={item => item.id}
         numColumns={numberOfColumns}
@@ -41,11 +36,10 @@ const styles = StyleSheet.create({
 Gallery.propTypes = {
   navigation: PropTypes.object.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
-  imageWidth: PropTypes.number.isRequired,
-  imageHeight: PropTypes.number.isRequired,
-  numberOfColumns: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  onRefresh: PropTypes.func.isRequired
+  itemSize: PropTypes.object.isRequired,
+  onRefresh: PropTypes.func.isRequired,
+  numberOfColumns: PropTypes.number.isRequired
 };
 
 export default Gallery;

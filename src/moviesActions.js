@@ -14,9 +14,9 @@ export const fetchMoviesSuccess = body => ({
   body
 });
 
-export const fetchMoviesFailure = exception => ({
+export const fetchMoviesFailure = error => ({
   type: FETCH_MOVIES_FAILURE,
-  exception
+  error
 });
 
 export const fetchMovies = () => dispatch => {

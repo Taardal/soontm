@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { TouchableHighlight, Image } from "react-native";
 import { styles } from "./GalleryItem.styles";
 
-const GalleryItem = ({ imageUrl, width, height, onClick }) => (
+const GalleryItem = ({ imageUrl, size, onClick }) => (
   <TouchableHighlight onPress={onClick}>
     <Image
       source={{ uri: imageUrl }}
       style={[
         styles.image,
         {
-          width: width,
-          height: height
+          width: size.width,
+          height: size.height
         }
       ]}
     />
@@ -20,8 +20,7 @@ const GalleryItem = ({ imageUrl, width, height, onClick }) => (
 
 GalleryItem.propTypes = {
   imageUrl: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  size: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired
 };
 

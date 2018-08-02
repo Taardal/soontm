@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Details from "./Details";
+import { getBackdropUrl } from "./imageConfigReducer";
 import { getLanguageName } from "./languagesReducer";
+import { getDetailsPosterSize } from "./dimensionsReducer";
 
 class DetailsContainer extends React.Component {
   static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -13,21 +15,23 @@ class DetailsContainer extends React.Component {
   };
 
   render() {
-    const { navigation, language } = this.props;
+    const { navigation, backdropUrl, language } = this.props;
     const movie = navigation.getParam("movie");
     const posterUrl = navigation.getParam("posterUrl");
-    const backdropUrl = navigation.getParam("backdropUrl");
     return <Details movie={movie} posterUrl={posterUrl} backdropUrl={backdropUrl} language={language} />;
   }
 }
 
 DetailsContainer.propTypes = {
   navigation: PropTypes.object.isRequired,
-  language: PropTypes.string.isRequired
+  language: PropTypes.string.isRequired,
+  backdropUrl: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  language: getLanguageName(state, ownProps.navigation.getParam("movie").original_language)
+  posterSize: getDetailsPosterSize(state),
+  backdropUrl: getBackdropUrl(state, ownProps.navigation.getParam("movie").backdrop_path),
+  language: getLanguageName(state, ownProps.navigation.getParam("movie").original_language),
 });
 
 export default connect(mapStateToProps)(DetailsContainer);

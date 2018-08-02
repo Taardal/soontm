@@ -12,7 +12,7 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 describe("languagesActions", () => {
-  it("fetches languages", () => {
+  it("dispatches success action when languages request was successful", () => {
     const initialState = {};
     const store = mockStore(initialState);
     const body = [
@@ -46,4 +46,24 @@ describe("languagesActions", () => {
       ]);
     });
   });
+
+    it("dispatches failure action when languages request failed", () => {
+    const initialState = {};
+    const store = mockStore(initialState);
+    const error = "Error";
+
+    fetch = jest.fn(() => Promise.reject(error));
+
+    return store.dispatch(fetchLanguages()).then(() => {
+      expect(store.getActions()).toEqual([
+        {
+          type: FETCH_LANGUAGES_REQUEST
+        },
+        {
+          type: FETCH_LANGUAGES_FAILURE,
+          error: error
+        }
+      ]);
+    });
+  })
 });

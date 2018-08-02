@@ -6,10 +6,10 @@ import Gallery from "./Gallery";
 import { fetchMovies } from "./moviesActions";
 import { fetchImageConfig } from "./imageConfigActions";
 import { fetchLanguages } from "./languagesActions";
+import { getDimensions } from "./dimensionsActions";
+import { getGalleryItemPosterSize } from "./dimensionsReducer"
 
 const NUMBER_OF_COLUMNS = 3;
-const IMAGE_WIDTH = Dimensions.get("window").width / NUMBER_OF_COLUMNS;
-const IMAGE_HEIGHT = (IMAGE_WIDTH * 5) / 3;
 
 class GalleryContainer extends React.Component {
   static navigationOptions = Gallery.navigationOptions;
@@ -19,49 +19,53 @@ class GalleryContainer extends React.Component {
     this.onRefresh = this.onRefresh.bind(this);
   }
 
+  componentWillMount() {
+    this.onRefresh();
+  }
+
   render() {
-    const { navigation, movies, isLoading } = this.props;
+    const { navigation, movies, isLoading, itemSize } = this.props;
     return (
       <Gallery
         navigation={navigation}
         movies={movies}
-        imageWidth={IMAGE_WIDTH}
-        imageHeight={IMAGE_HEIGHT}
-        numberOfColumns={NUMBER_OF_COLUMNS}
         isLoading={isLoading}
+        itemSize={itemSize}
         onRefresh={this.onRefresh}
+        numberOfColumns={NUMBER_OF_COLUMNS}
       />
     );
-  }
-
-  componentDidMount() {
-    this.onRefresh();
   }
 
   onRefresh() {
     this.props.onFetchMovies();
     this.props.onFetchImageConfig();
     this.props.onFetchLanguages();
+    this.props.onGetDimensions();
   }
 }
 
 GalleryContainer.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  itemSize: PropTypes.object.isRequired,
   onFetchMovies: PropTypes.func.isRequired,
   onFetchImageConfig: PropTypes.func.isRequired,
-  onFetchLanguages: PropTypes.func.isRequired
+  onFetchLanguages: PropTypes.func.isRequired,
+  onGetDimensions: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   movies: state.movies,
-  isLoading: state.isMoviesLoading && state.isImageConfigLoading && state.isLanguagesLoading
+  isLoading: state.isMoviesLoading && state.isImageConfigLoading && state.isLanguagesLoading,
+  itemSize: getGalleryItemPosterSize(state, NUMBER_OF_COLUMNS)
 });
 
 const mapDispatchToProps = dispatch => ({
   onFetchMovies: () => dispatch(fetchMovies()),
   onFetchImageConfig: () => dispatch(fetchImageConfig()),
-  onFetchLanguages: () => dispatch(fetchLanguages())
+  onFetchLanguages: () => dispatch(fetchLanguages()),
+  onGetDimensions: () => dispatch(getDimensions())
 });
 
 export default connect(

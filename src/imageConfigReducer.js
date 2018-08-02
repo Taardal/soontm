@@ -40,26 +40,28 @@ export const isImageConfigError = (state = false, action) => {
   }
 };
 
-export const getPosterUrl = (state, posterPath, smallestWidthAllowed) => {
+export const getPosterUrl = (state, posterPath, posterWidth) => {
   if (state.imageConfig) {
     const secureBaseUrl = state.imageConfig.secure_base_url;
     const posterSizes = state.imageConfig.poster_sizes;
     if (secureBaseUrl && posterSizes) {
-      const widthClass = getImageWidthClass(posterSizes, smallestWidthAllowed);
+      const widthClass = getImageWidthClass(posterSizes, posterWidth);
       return secureBaseUrl + widthClass + posterPath;
     }
   }
+  return "";
 };
 
-export const getBackdropUrl = (state, backdropPath, smallestWidthAllowed) => {
-    if (state.imageConfig) {
+export const getBackdropUrl = (state, backdropPath) => {
+  if (state.imageConfig) {
     const secureBaseUrl = state.imageConfig.secure_base_url;
     const backdropSizes = state.imageConfig.backdrop_sizes;
     if (secureBaseUrl && backdropSizes) {
-      const widthClass = getImageWidthClass(backdropSizes, smallestWidthAllowed);
+      const widthClass = getImageWidthClass(backdropSizes, state.dimensions.width);
       return secureBaseUrl + widthClass + backdropPath;
     }
   }
+  return "";
 };
 
 const getImageWidthClass = (sizes, smallestWidthAllowed) => {
