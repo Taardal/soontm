@@ -2,7 +2,7 @@
 Example app that displays upcoming movies from [The Movie Database](http://themoviedb.org/).
 
 ### Things to note about dependencies
-This app runs React Native v0.56 which uses Babel 7. That requires [babel-preset-react-native](https://www.npmjs.com/package/babel-preset-react-native) version to be *fixed* at version `5.0.2`. 
+This app runs React Native v0.56 which uses Babel 7. That requires [babel-preset-react-native](https://www.npmjs.com/package/babel-preset-react-native) version to be *fixed* at-or-above version `5.0.2`. 
 From [RN v0.56 changelog](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md#056): 
 > When upgrading to 0.56, make sure to bump your babel-preset-react-native package.json dependency to `5.0.2` or newer (but still as *fixed* value).
 
