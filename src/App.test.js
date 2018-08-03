@@ -8,6 +8,7 @@ jest.mock("react-navigation", () => {
     createStackNavigator: () => "Navigator"
   };
 });
+jest.mock("react-native-vector-icons/MaterialIcons", () => "Icon");
 
 describe("App", () => {
   it("matches snapshot", () => {

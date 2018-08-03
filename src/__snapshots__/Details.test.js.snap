@@ -11,22 +11,61 @@ exports[`Details matches snapshot 1`] = `
   <Component
     style={
       Object {
-        "flex": 3,
+        "flex": 1,
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "uri": "backdropUrl",
-        }
-      }
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[MockFunction]}
       style={
         Object {
           "flex": 2,
         }
       }
-    />
+      underlayColor="black"
+    >
+      <Component
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "backdropUrl",
+            }
+          }
+          style={
+            Object {
+              "flex": 2,
+            }
+          }
+        />
+        <Component
+          style={
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <Icon
+            color="white"
+            name="play-circle-outline"
+            size={60}
+          />
+        </Component>
+      </Component>
+    </TouchableHighlight>
     <Component
       style={
         Object {
@@ -47,7 +86,7 @@ exports[`Details matches snapshot 1`] = `
             "right": 25,
           },
           Object {
-            "height": 183.33333333333334,
+            "height": 100,
           },
         ]
       }
@@ -65,8 +104,8 @@ exports[`Details matches snapshot 1`] = `
               "resizeMode": "cover",
             },
             Object {
-              "height": 183.33333333333334,
-              "width": 110,
+              "height": 100,
+              "width": 100,
             },
           ]
         }
@@ -132,7 +171,7 @@ exports[`Details matches snapshot 1`] = `
   <Component
     style={
       Object {
-        "flex": 3,
+        "flex": 1,
       }
     }
   >

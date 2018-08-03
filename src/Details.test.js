@@ -4,6 +4,7 @@ import Enzyme from "enzyme";
 import Details from "./Details";
 
 jest.mock("Text", () => "Text");
+jest.mock("react-native-vector-icons/MaterialIcons", () => "Icon");
 
 describe("Details", () => {
   it("matches snapshot", () => {
@@ -14,9 +15,23 @@ describe("Details", () => {
       original_language: "en",
       overview: "overview"
     };
+    const posterSize = {
+      width: 100,
+      height: 100
+    };
 
     const shallowRenderer = new ShallowRenderer();
-    shallowRenderer.render(<Details movie={movie} posterUrl={"posterUrl"} backdropUrl={"backdropUrl"} language={"English"} />);
+    shallowRenderer.render(
+      <Details
+        movie={movie}
+        posterSize={posterSize}
+        posterUrl={"posterUrl"}
+        backdropUrl={"backdropUrl"}
+        trailerUrl={"trailerUrl"}
+        language={"English"}
+        onPlayTrailer={jest.fn()}
+      />
+    );
     const renderOutput = shallowRenderer.getRenderOutput();
 
     expect(renderOutput).toMatchSnapshot();

@@ -26,13 +26,6 @@ class Gallery extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center"
-  }
-});
-
 Gallery.propTypes = {
   navigation: PropTypes.object.isRequired,
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,

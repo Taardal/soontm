@@ -15,9 +15,9 @@ class Details extends React.Component {
     const backdrop = this.getBackdrop();
     return (
       <View style={styles.container}>
-        <View style={{ flex: 3 }}>
+        <View style={styles.headerAndBackdropContainer}>
           {backdrop}
-          <View style={styles.header} />
+          <View style={styles.headerBackground} />
           <View style={[styles.headerOverlay, { height: posterSize.height }]}>
             <Image
               source={{ uri: posterUrl }}
@@ -29,8 +29,8 @@ class Details extends React.Component {
                 }
               ]}
             />
-            <View style={styles.infoFrame}>
-              <View style={styles.infoText}>
+            <View style={styles.headerOverylayTextContainer}>
+              <View style={styles.headerOverylayText}>
                 <Text style={styles.title}>{movie.title}</Text>
                 <View style={styles.subtitleText}>
                   <Text style={styles.releaseDate}>{movie.release_date}</Text>
@@ -40,8 +40,8 @@ class Details extends React.Component {
             </View>
           </View>
         </View>
-        <View style={styles.overview}>
-          <View style={styles.overviewText}>
+        <View style={styles.overviewContainer}>
+          <View style={styles.overviewTextContainer}>
             <Text style={styles.overviewTitleText}>Overview</Text>
             <Text>{movie.overview}</Text>
           </View>
@@ -55,20 +55,10 @@ class Details extends React.Component {
     const backdropImage = <Image source={{ uri: backdropUrl }} style={styles.backdrop} />;
     if (trailerUrl.length > 0) {
       return (
-        <TouchableHighlight style={{ flex: 2 }} onPress={onPlayTrailer}>
-          <View style={{ flex: 1 }}>
+        <TouchableHighlight style={styles.backdrop} onPress={onPlayTrailer}>
+          <View style={styles.backdropTouchableContainer}>
             {backdropImage}
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0
-              }}
-            >
+            <View style={styles.backdropPlay}>
               <Icon name="play-circle-outline" size={60} color="white" />
             </View>
           </View>

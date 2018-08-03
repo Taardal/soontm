@@ -1,4 +1,10 @@
-import { imageConfig, isImageConfigLoading, isImageConfigError, getPosterUrl, getBackdropUrl } from "./imageConfigReducer";
+import {
+  imageConfig,
+  isImageConfigLoading,
+  isImageConfigError,
+  getPosterUrl,
+  getBackdropUrl
+} from "./imageConfigReducer";
 import {
   FETCH_IMAGE_CONFIG_REQUEST,
   FETCH_IMAGE_CONFIG_SUCCESS,
@@ -81,6 +87,10 @@ describe("imageConfigReducer", () => {
       imageConfig: {
         secure_base_url: "image/api/base/url/",
         backdrop_sizes: ["w320", "w" + targetWidth, "w1080"]
+      },
+      dimensions: {
+        width: 600,
+        height: 600
       }
     };
     const movie = {
@@ -91,5 +101,5 @@ describe("imageConfigReducer", () => {
     expect(getBackdropUrl(state, movie.backdrop_path, screenWidth)).toEqual(
       "image/api/base/url/w" + targetWidth + movie.backdrop_path
     );
-  })
+  });
 });

@@ -6,10 +6,12 @@ import GalleryItem from "./GalleryItem";
 describe("GalleryItem", () => {
   it("matches snapshot", () => {
     const shallowRenderer = new ShallowRenderer();
+    const size = {
+      width: 100,
+      height: 100
+    };
 
-    shallowRenderer.render(
-      <GalleryItem imageUrl={"imageUrl"} width={100} height={100} onClick={jest.fn()} />
-    );
+    shallowRenderer.render(<GalleryItem imageUrl={"imageUrl"} size={size} onClick={jest.fn()} />);
     const renderOutput = shallowRenderer.getRenderOutput();
 
     expect(renderOutput).toMatchSnapshot();
@@ -17,12 +19,12 @@ describe("GalleryItem", () => {
 
   it("renders image with expected props", () => {
     const imageUrl = "imageUrl";
-    const width = 100;
-    const height = 100;
+    const size = {
+      width: 100,
+      height: 100
+    };
 
-    const enzyme = Enzyme.shallow(
-      <GalleryItem imageUrl={imageUrl} width={width} height={height} onClick={jest.fn()} />
-    );
+    const enzyme = Enzyme.shallow(<GalleryItem imageUrl={imageUrl} size={size} onClick={jest.fn()} />);
 
     const image = enzyme.find("Image");
     expect(image).toBeTruthy();
@@ -30,15 +32,19 @@ describe("GalleryItem", () => {
 
     const stylesUsingStyleSheet = image.props().style[0];
     const stylesUsingProps = image.props().style[1];
-    expect(stylesUsingProps.width).toBe(width);
-    expect(stylesUsingProps.height).toBe(height);
+    expect(stylesUsingProps.width).toBe(size.width);
+    expect(stylesUsingProps.height).toBe(size.height);
   });
 
   it("calls callback on press", () => {
     const onClick = jest.fn();
-    
-    const enzyme = Enzyme.shallow(<GalleryItem imageUrl={"imageUrl"} width={100} height={100} onClick={onClick} />);
-    
+    const size = {
+      width: 100,
+      height: 100
+    };
+
+    const enzyme = Enzyme.shallow(<GalleryItem imageUrl={"imageUrl"} size={size} onClick={onClick} />);
+
     enzyme.find("TouchableHighlight").simulate("press");
     expect(onClick.mock.calls.length).toBe(1);
   });

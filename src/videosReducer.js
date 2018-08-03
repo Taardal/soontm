@@ -3,7 +3,6 @@ import { FETCH_VIDEOS_REQUEST, FETCH_VIDEOS_SUCCESS, FETCH_VIDEOS_FAILURE } from
 export const videos = (state = {}, action) => {
   switch (action.type) {
     case FETCH_VIDEOS_SUCCESS:
-      console.log(action);
       const newState = { ...state };
       newState[action.body.id] = action.body.results;
       return newState;
